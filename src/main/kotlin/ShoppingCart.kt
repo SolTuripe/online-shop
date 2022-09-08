@@ -5,4 +5,5 @@ class ShoppingCart {
     fun addProduct(product: Product) {
         shoppingProducts.add(product)
     }
+
 }
