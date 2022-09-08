@@ -1,5 +1,5 @@
 class ProductsStock {
-    private var productsStock: MutableList<Product> = mutableListOf(Product(
+    var productsStock: MutableList<Product> = mutableListOf(Product(
         1,
         "\uD83D\uDCFA",
         "Television",
