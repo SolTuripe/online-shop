@@ -20,7 +20,6 @@ class ProductsStock {
     ))
 
     fun showProducts(): MutableList<Product> {
-        println(productsStock)
         return productsStock
     }
 }
