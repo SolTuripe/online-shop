@@ -1,7 +1,9 @@
 class OnlineStore {
-   var stock = ProductsStock()
+   private var stock:ProductsStock = ProductsStock()
 
     fun showAllProducts(): MutableList<Product> {
-        return stock.productsStock
+        for(product in stock.showProducts()) {
+        }
+        return stock.showProducts()
     }
 }
