@@ -1,11 +1,11 @@
 class Product(id: Int, img: String, name: String, attribute: String, description: String, price: Double, reference: String) {
 
     private var productId = id
-    private var productImg = img
-    private var productName = name
-    private var productAttribute = attribute
-    private var productDescription = description
-    private var productPrice = price
-    private var productReference = reference
+    var productImg = img
+    var productName = name
+    var productAttribute = attribute
+    var productDescription = description
+    var productPrice = price
+    var productReference = reference
 }
 
