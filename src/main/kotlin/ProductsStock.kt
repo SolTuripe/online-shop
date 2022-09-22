@@ -1,3 +1,6 @@
+import java.lang.IllegalArgumentException
+import java.lang.RuntimeException
+
 class ProductsStock {
     private var productsStock: MutableList<Product> = mutableListOf(
         Product(
@@ -22,5 +25,26 @@ class ProductsStock {
 
     fun showProducts(): MutableList<Product> {
         return productsStock
+    }
+
+    fun findOneProductByReference(reference: String?): Product {
+        for (product in productsStock) {
+            if (product.productReference == reference) {
+                return product
+            }
+        }
+        throw RuntimeException ("This product doesn't exist")
+    }
+
+    fun showQuantityOfProductsInStock(reference: String): Int {
+        var quantity: Int = 0
+        for(product in productsStock) {
+            if(product.productReference == reference) quantity ++
+        }
+        return quantity
+    }
+
+    fun filterByPrice(price: Double): List<Product> {
+        return productsStock.filter { it.productPrice < price }
     }
 }

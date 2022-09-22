@@ -10,4 +10,69 @@ class OnlineStore {
         return productList
     }
 
+    fun showOneProductInformation(product: Product) {
+        println(product.productImg)
+        println(product.productName)
+        println(product.productDescription)
+        println(product.productAttribute)
+        println("\uD83D\uDCB0 Price: ${product.productPrice}€")
+        println("Reference: ${product.productReference}\n")
+    }
+
+    fun askForProduct(): Product {
+        println("Enter a product's reference:")
+        val reference = readln()
+        return stock.findOneProductByReference(reference)
+    }
+
+    fun askForNextStep() {
+        println("""
+            What would you like to do next?
+            1. Add product to cart..
+            2. Keep browsing..
+        """.trimMargin())
+        when (readln()) {
+            "1" -> false
+            "2" -> {
+                showAllProducts()
+                nextStep()
+            }
+            else -> askForNextStep()
+        }
+    }
+
+    private fun getProductsLowerThan(): Double {
+        println("Browse products with prices lower than:")
+        return readln().toDouble()
+    }
+
+    fun showProductLowerThan() {
+        val products = stock.filterByPrice(getProductsLowerThan())
+        for (product in products) {
+            println(product.productImg)
+            println(product.productName)
+            println(product.productDescription)
+            println(product.productAttribute)
+            println("\uD83D\uDCB0 Price: ${product.productPrice}€")
+            println("Reference: ${product.productReference}\n")
+        }
+    }
+
+    fun nextStep() {
+        println("""
+            What would you like to do next?:
+            2. Keep browsing the catalog
+            3. See a product's details 
+        """.trimMargin())
+        when (readln()) {
+            "2" -> {
+                showProductLowerThan()
+                nextStep()
+            }
+            "3" -> {
+                showOneProductInformation(askForProduct())
+                askForNextStep()
+            }
+        }
+    }
 }
