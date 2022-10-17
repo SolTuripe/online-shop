@@ -1,5 +1,6 @@
 fun main() {
-    val store  = OnlineStore()
+    val stock = ProductsStock()
+    val store = OnlineStore(stock)
 
     println(store.showAllProducts())
     println(store.askForNextStep())

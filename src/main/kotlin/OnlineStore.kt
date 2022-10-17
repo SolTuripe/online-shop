@@ -1,5 +1,5 @@
-class OnlineStore {
-   private var stock:ProductsStock = ProductsStock()
+class OnlineStore(private var stock:ProductsStock) {
+   //private var stock:ProductsStock = ProductsStock()
 
     fun showAllProducts(): String {
         var productList = ""
@@ -10,16 +10,19 @@ class OnlineStore {
         return productList
     }
 
-    fun showOneProductInformation(product: Product) {
-        println(product.productImg)
-        println(product.productName)
-        println(product.productDescription)
-        println(product.productAttribute)
-        println("\uD83D\uDCB0 Price: ${product.productPrice}€")
-        println("Reference: ${product.productReference}\n")
+    private fun showOneProductInformation(product: Product?) {
+        if (product != null) {
+            println(product.productImg)
+            println(product.productName)
+            println(product.productDescription)
+            println(product.longDescription)
+            println(product.productAttribute)
+            println("\uD83D\uDCB0 Price: ${product.productPrice}€")
+            println("Reference: ${product.productReference}\n")
+        }
     }
 
-    fun askForProduct(): Product {
+    private fun askForProductLowerThan(): Product? {
         println("Enter a product's reference:")
         val reference = readln()
         return stock.findOneProductByReference(reference)
@@ -34,7 +37,7 @@ class OnlineStore {
         when (readln()) {
             "1" -> false
             "2" -> {
-                showAllProducts()
+                getProductsLowerThan()
                 nextStep()
             }
             else -> askForNextStep()
@@ -49,12 +52,7 @@ class OnlineStore {
     fun showProductLowerThan() {
         val products = stock.filterByPrice(getProductsLowerThan())
         for (product in products) {
-            println(product.productImg)
-            println(product.productName)
-            println(product.productDescription)
-            println(product.productAttribute)
-            println("\uD83D\uDCB0 Price: ${product.productPrice}€")
-            println("Reference: ${product.productReference}\n")
+            showOneProductInformation(product)
         }
     }
 
@@ -67,11 +65,11 @@ class OnlineStore {
         when (readln()) {
             "2" -> {
                 showProductLowerThan()
-                nextStep()
+                //nextStep()
             }
             "3" -> {
-                showOneProductInformation(askForProduct())
-                askForNextStep()
+                showOneProductInformation(askForProductLowerThan())
+                //askForNextStep()
             }
         }
     }
